@@ -1,4 +1,5 @@
 {
+  "homepage":"https://ayman20019.github.io/contact",
   "name": "contact",
   "version": "1.1.0",
   "private": true,
@@ -26,7 +27,9 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "redeploy":"npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
