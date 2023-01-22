@@ -1,0 +1,27 @@
+.App {
+    background-color: #ececec;
+}
+
+.App{
+    height: 100vh;
+
+}
+.row.app-wrapper {
+    height: 80vh;
+}
+
+.app-wrapper {
+    color: white;
+}
+
+
+.users-wrapper{
+    height: 70vh;
+    overflow-y: scroll;
+    scrollbar-width: 0;
+    
+}
+
+.users-wrapper::-webkit-scrollbar {
+    display: none;
+}

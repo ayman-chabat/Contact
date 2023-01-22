@@ -1,0 +1,23 @@
+.navbar .navbar-nav .nav-item a{
+    color: #bcbfc2;
+}
+
+.navbar .navbar-nav .nav-item a{
+    background-color: #F6EAD3;
+    transition:  background-color,color 0.4s ease-in;
+}
+.navbar .navbar-nav .nav-item a:hover{
+    background-color: #E9D1BF;
+    color: white;
+}
+.navbar .navbar-nav .nav-item a:hover .icon{
+    color: white;
+}
+ 
+.navbar .navbar-nav .nav-item a.active{
+    background-color: #E9D1BF;
+    color: white;
+}
+.navbar .navbar-nav .nav-item a.active .icon{
+    color: white;
+}
