@@ -5,18 +5,18 @@ import { createSlice } from '@reduxjs/toolkit'
 const contactSlice = createSlice({
     name: 'contacts',
     initialState: [{ 
-        user: { id: crypto.randomUUID(), avatar: `https://api.multiavatar.com/0.png` },
+        user: { id: 0, avatar: `https://api.multiavatar.com/0.png` },
         name: 'Aymane Chabat',
         tel: '0606060606',
         ville: "Tanger"
     }],
     reducers: {
         addContact: (state, action) => {
-            const { name, tel, ville } = action.payload
+            const { name, tel, ville, id, pic } = action.payload
             state.push({
                 user: {
-                    id: crypto.randomUUID(),
-                    avatar: `https://api.multiavatar.com/${name}.png`
+                    id: id,
+                    avatar: pic
                 },
                 name, tel, ville
             })

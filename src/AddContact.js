@@ -4,12 +4,13 @@ import { addContact } from './redux/slices/contactSilce';
 import './App.css';
 import { useNavigate } from "react-router-dom";
 
-function AddContact({text,setPage}) {
+function AddContact({id, photo, setCC}) {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const phoneRef = useRef();
   const cityRef = useRef();
   const nameRef = useRef();
+  useEffect(()=>{setCC('')},[])
 
   const handleAddContacts =  (e) => {
     let name = nameRef.current.value.trim();
@@ -18,43 +19,45 @@ function AddContact({text,setPage}) {
     if (name =='' || tel=='' || ville =='') {
       return;
     }
+    var pic = `https://api.multiavatar.com/${id}.png`
     dispatch(addContact({
-      name,ville,tel
+      name,ville,tel, id, pic
     }));
-    setPage(true)
     phoneRef.current.value = '';
     nameRef.current.value = '';
     cityRef.current.value = '';
     navigate(-1)
+    setCC({
+    user: { id: id, avatar: pic },
+    name: name,
+    tel: tel,
+    ville: ville
+    })
+    photo(crypto.randomUUID())
   }
-  useEffect(()=>{
-    setPage(false)
-  },[])
   return (
-    <div className={`col-5 py-0 row`} style={{backgroundColor:`black`,display:'flex',width:'58.33333333%',height:'700px',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
     <div className="col-9 mx-auto mt-5 py-2 px-4">
       <div className="mb-3 row text-dark">
         <div className="col">
           <label className="form-label">Name</label>
-          <input type="text" ref={nameRef} className="form-control shadow-none" placeholder="Name" aria-describedby="emailHelp" />
+          <input type="text" ref={nameRef} className="form-control shadow-none" placeholder="Name" />
         </div>
       </div>
       <div className="mb-3 row text-dark">
         <div className="col">
           <label className="form-label">Phone Number</label>
-          <input type="text" ref={phoneRef} className="form-control shadow-none" placeholder="Phone Number" aria-describedby="emailHelp" />
+          <input type="text" ref={phoneRef} className="form-control shadow-none" placeholder="Phone Number" />
         </div>
         <div className="col">
           <label className="form-label">City</label>
-          <input type="text" ref={cityRef} className="form-control shadow-none" placeholder="City" aria-describedby="emailHelp" />
+          <input type="text" ref={cityRef} className="form-control shadow-none" placeholder="City"/>
         </div>
       </div>
       <div className="row">
         <button onClick={handleAddContacts} className='col-5 mx-auto btn mt-4 ' style={{ backgroundColor: '#F6EAD3' }}>
-          {text}
+          Add
         </button>
       </div>
-    </div>
     </div>
   )
 }

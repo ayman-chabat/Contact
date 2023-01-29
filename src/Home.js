@@ -3,7 +3,7 @@ import {useSelector } from 'react-redux';
 import './App.css';
 import Contact from './Contact';
 
-export default function Home({}) {
+export default function Home({CC, prevcontact}) {
   const [search, setSearch] = useState('');
   const [order, setOrder] = useState(true);
   const contacts = useSelector(state=>{
@@ -30,8 +30,8 @@ export default function Home({}) {
       </div>
       <div layout className='users-wrapper'>
         {
-          order ? [...contacts].sort((a, b) => (a.name < b.name ? 1 : -1)).map(person => <Contact key={person.id} person={person} />)
-            : [...contacts].sort((a, b) => (a.name > b.name ? 1 : -1)).map(person => <Contact key={person.id} person={person} />)
+          order ? [...contacts].sort((a, b) => (a.name < b.name ? 1 : -1)).map(person => <Contact prevcontact={prevcontact} CC={CC} key={person.user.id} person={person} />)
+            : [...contacts].sort((a, b) => (a.name > b.name ? 1 : -1)).map(person => <Contact prevcontact={prevcontact} CC={CC} key={person.user.id} person={person} />)
         }
       </div>
     </div>

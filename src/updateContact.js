@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { updateContact } from './redux/slices/contactSilce';
+import { updateContact, deleteContact } from './redux/slices/contactSilce';
 import './App.css';
 
-function UpdateContact({text, info}) {
+function UpdateContact({info, infoprev, setCC}) {
   const dispatch = useDispatch();
   const [tel,setPhone] = useState('');
   const [ville,setCity] = useState('');
   const [name,setName] = useState('');
+  const removeFromContact = () => {
+    dispatch(deleteContact({
+        id:info.user.id
+    }));
+    setCC(infoprev)
+}
 
   useEffect(()=>{
     setCity(info != undefined ? info.ville : '')
@@ -45,7 +51,10 @@ function UpdateContact({text, info}) {
       </div>
       <div className="row">
         <button onClick={handleUpdateContacts} className='col-5 mx-auto btn mt-4 ' style={{ backgroundColor: '#F6EAD3' }}>
-          {text}
+          Update
+        </button>
+        <button onClick={removeFromContact} className='col-5 mx-auto btn mt-4 ' style={{ backgroundColor: 'red' }}>
+          Delete
         </button>
       </div>
     </div>
